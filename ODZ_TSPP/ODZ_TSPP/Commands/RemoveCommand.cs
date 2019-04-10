@@ -19,7 +19,9 @@ namespace ODZ_TSPP.Commands
 
         public void Execute()
         {
+            string title = _view.GetTitleField();
 
+            _context.DeleteBook(title);
         }
     }
 }

@@ -19,7 +19,14 @@ namespace ODZ_TSPP.Commands
 
         public void Execute()
         {
-            
+            string title = _view.GetTitleField();
+            double price = _view.GetPriceField();
+            int quantity = _view.GetQuantityField();
+            Interval confines = _view.GetLimitFields();
+
+            Book book = new Book(title, price, quantity, confines);
+
+            _context.AddBook(book);
         }
     }
 }

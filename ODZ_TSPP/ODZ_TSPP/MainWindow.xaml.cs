@@ -26,6 +26,7 @@ namespace ODZ_TSPP
         public View()
         {
             InitializeComponent();
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
             viewModel = new ViewModel(this);
 
