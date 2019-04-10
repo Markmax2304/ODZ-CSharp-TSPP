@@ -24,8 +24,9 @@ namespace ODZ_TSPP
                 new Book("War and piece", 20.9, 40, new Interval(21, 50))
             };
 
-            //ConnectToMySqlDB();
-            //dbConnection.Open();
+            ConnectToMySqlDB();
+            
+            dbConnection.Open();
         }
 
         ~Model()
@@ -37,9 +38,9 @@ namespace ODZ_TSPP
         #region Public Methods
         public List<Book> GetAllBooks()
         {
-            return books;
+            //return books;
 
-            string queryAllItems = "select name, price, count, confines from DB_books"; //change table name in DB 
+            string queryAllItems = "select name, price, count, confines from books"; //change table name in DB 
 
             MySqlCommand cmd = new MySqlCommand(queryAllItems, dbConnection);
             List<Book> dbBooks = new List<Book>();
@@ -106,6 +107,10 @@ namespace ODZ_TSPP
         #region Private Methods
         private void ConnectToMySqlDB()
         {
+            //dbConnection = DBUtils.GetDBConnection("localhost", 3306, "people", "root", "jeka052");
+            dbConnection = new MySqlConnection("server=localhost;user=root;database=tspp;password=jeka052");
+            return;
+
             string path = Directory.GetCurrentDirectory();
             string config;
             using (FileStream fstream = File.OpenRead($"{path}\\config.txt"))
