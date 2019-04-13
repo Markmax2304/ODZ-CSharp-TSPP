@@ -1,4 +1,1 @@
-﻿host=localhost
-username=root
-database=tspp
-password=jeka052
+﻿host=localhost/username=root/database=tspp/password=jeka052

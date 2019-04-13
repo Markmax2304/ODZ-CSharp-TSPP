@@ -39,9 +39,13 @@ namespace ODZ_TSPP
         public Book GetBookByTitle(string value)
         {
             string queryAllItems = $"select name, price, count, confines, idbook from books where NAME like '{value}'";
-            Book book = GetBooksList(queryAllItems)[0];
+            List<Book> books = GetBooksList(queryAllItems);
+            if (books != null && books.Count > 0)
+            {
+                return books[0];
+            }
 
-            return book;
+            return null;
         }
 
         public void AddBook(Book book)
@@ -73,11 +77,8 @@ namespace ODZ_TSPP
         #endregion
 
         #region Private Methods
-        // check!
         private void ConnectToMySqlDB()
         {
-            //dbConnection = DBUtils.GetDBConnection("localhost", "root", "tspp", "jeka052"); 
-
             string path = Directory.GetCurrentDirectory();
             string config;
             using (FileStream fstream = File.OpenRead($"{path}\\config.txt"))
@@ -89,12 +90,12 @@ namespace ODZ_TSPP
                 config = Encoding.Default.GetString(array);
             }
 
-            string[] configs = config.Split('\n');
+            string[] configs = config.Split('/');
             string[] parameters = new string[configs.Length];
             for (int i = 0; i < configs.Length; i++)
             {
                 string[] row = configs[i].Split('=');
-                parameters[i] = row[1].Substring(0, row[1].Length - 1);
+                parameters[i] = row[1];
             }
 
             dbConnection = DBUtils.GetDBConnection(
