@@ -24,7 +24,7 @@ namespace ODZ_TSPP.Commands
             int quantity = _view.GetQuantityField();
             Interval confines = _view.GetLimitFields();
 
-            Book book = new Book(1000, title, price, quantity, confines);
+            Book book = new Book(title, price, quantity, confines);
 
             _context.AddBook(book);
         }

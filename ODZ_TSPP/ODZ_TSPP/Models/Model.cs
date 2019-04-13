@@ -51,30 +51,24 @@ namespace ODZ_TSPP
                 throw new Exception($"Such book {book.Title} is already existed in DataBase.");
             }
 
-            string insertQuery = String.Format("INSERT INTO books VALUES ('{0}', '{1}', '{2}', '{3}-{4}', {5})",
-                book.Title, book.Price, book.Quantity, book.Limit.from, book.Limit.till, book.Id);
+            string insertQuery = String.Format("INSERT INTO books (name, price, count, confines) VALUES ('{0}', '{1}', '{2}', '{3}-{4}')",
+                book.Title, book.Price, book.Quantity, book.Limit.from, book.Limit.till);
 
             MySqlCommand cmd = new MySqlCommand(insertQuery, dbConnection);
             cmd.ExecuteNonQuery();
         }
 
-        public void DeleteBook(Book book)
-        {
-            if (!books.Contains(book))
-            {
-                throw new Exception($"Such book {book.Title} is not existed in DataBase.");
-            }
-            books.Remove(book);
-        }
-
         public void DeleteBook(string title)
         {
-            Book book = books.Find(x => x.Title == title);
-            if (books == null)
+            if (GetBookByTitle(title) == null)
             {
-                throw new Exception($"Such book {book.Title} is not existed in DataBase.");
+                throw new Exception($"Such book {title} is not existed in DataBase.");
             }
-            books.Remove(book);
+
+            string deleteQuery = String.Format("DELETE FROM books WHERE name = '{0}'", title);
+
+            MySqlCommand cmd = new MySqlCommand(deleteQuery, dbConnection);
+            cmd.ExecuteNonQuery();
         }
         #endregion
 
@@ -122,7 +116,7 @@ namespace ODZ_TSPP
                         Interval limit = new Interval(Int32.Parse(confines[0]), Int32.Parse(confines[1]));
                         int id = Convert.ToInt32(dbReader.GetValue(4));
 
-                        dbBooks.Add(new Book(id, title, price, quantity, limit));
+                        dbBooks.Add(new Book(title, price, quantity, limit));
                     }
                 }
             }

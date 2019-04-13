@@ -18,7 +18,6 @@ namespace ODZ_TSPP
 
             commands = new Dictionary<string, ICommandButton>();
             commands.Add(Constants.SHOW_COMMAND, new ShowCommand(context, _view));
-            commands.Add(Constants.EDIT_COMMAND, new EditCommand(context, _view));
             commands.Add(Constants.REMOVE_COMMAND, new RemoveCommand(context, _view));
             commands.Add(Constants.ADD_COMMAND, new AddCommand(context, _view));
             commands.Add(Constants.CLEAR_COMMAND, new ClearCommand(context, _view));
