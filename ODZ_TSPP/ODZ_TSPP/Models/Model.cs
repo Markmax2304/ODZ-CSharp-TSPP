@@ -14,18 +14,11 @@ namespace ODZ_TSPP
     public class Model
     {
         private MySqlConnection dbConnection;
-        List<Book> books;
+        private static List<Book> books = new List<Book>();
 
         public Model()
         {
-            books = new List<Book>()
-            {
-                new Book("Lord of the rings", 10.0, 150, new Interval(14, 50)),
-                new Book("War and piece", 20.9, 40, new Interval(21, 50))
-            };
-
             ConnectToMySqlDB();
-            
             dbConnection.Open();
         }
 
@@ -38,50 +31,31 @@ namespace ODZ_TSPP
         #region Public Methods
         public List<Book> GetAllBooks()
         {
-            //return books;
+            string queryAllItems = "SELECT name, price, count, confines, idbook FROM books";
 
-            string queryAllItems = "select name, price, count, confines from books"; //change table name in DB 
-
-            MySqlCommand cmd = new MySqlCommand(queryAllItems, dbConnection);
-            List<Book> dbBooks = new List<Book>();
-
-            using (DbDataReader dbReader = cmd.ExecuteReader())
-            {
-                if (dbReader.HasRows)
-                {
-                    while (dbReader.Read())
-                    {
-                        string title = dbReader.GetString(0);
-                        double price = Convert.ToDouble(dbReader.GetValue(1));
-                        int quantity = Convert.ToInt32(dbReader.GetValue(2));
-                        string[] confines = dbReader.GetString(3).Split('-');
-                        Interval limit = new Interval(Int32.Parse(confines[0]), Int32.Parse(confines[1]));
-
-                        dbBooks.Add(new Book(title, price, quantity, limit));
-                    }
-                }
-            }
-
-            return dbBooks;
+            return GetBooksList(queryAllItems);
         }
 
         public Book GetBookByTitle(string value)
         {
-            Book book = books.Find(x => x.Title == value);
-            if(book != null)
-            {
-                return book;
-            }
-            throw new Exception($"Such book {value} dont exist in DataBase.");
+            string queryAllItems = $"select name, price, count, confines, idbook from books where NAME like '{value}'";
+            Book book = GetBooksList(queryAllItems)[0];
+
+            return book;
         }
 
         public void AddBook(Book book)
         {
-            if (books.Contains(book))
+            if(GetBookByTitle(book.Title) != null) 
             {
                 throw new Exception($"Such book {book.Title} is already existed in DataBase.");
             }
-            books.Add(book);
+
+            string insertQuery = String.Format("INSERT INTO books VALUES ('{0}', '{1}', '{2}', '{3}-{4}', {5})",
+                book.Title, book.Price, book.Quantity, book.Limit.from, book.Limit.till, book.Id);
+
+            MySqlCommand cmd = new MySqlCommand(insertQuery, dbConnection);
+            cmd.ExecuteNonQuery();
         }
 
         public void DeleteBook(Book book)
@@ -105,11 +79,10 @@ namespace ODZ_TSPP
         #endregion
 
         #region Private Methods
+        // check!
         private void ConnectToMySqlDB()
         {
-            //dbConnection = DBUtils.GetDBConnection("localhost", 3306, "people", "root", "jeka052");
-            dbConnection = new MySqlConnection("server=localhost;user=root;database=tspp;password=jeka052");
-            return;
+            //dbConnection = DBUtils.GetDBConnection("localhost", "root", "tspp", "jeka052"); 
 
             string path = Directory.GetCurrentDirectory();
             string config;
@@ -131,7 +104,30 @@ namespace ODZ_TSPP
             }
 
             dbConnection = DBUtils.GetDBConnection(
-                parameters[0], Int32.Parse(parameters[1]), parameters[2], parameters[3], parameters[4]);
+                parameters[0], parameters[1], parameters[2], parameters[3]);
+        }
+
+        private List<Book> GetBooksList(string query)
+        {
+            MySqlCommand cmd = new MySqlCommand(query, dbConnection);
+            List<Book> dbBooks = new List<Book>();
+
+            using (DbDataReader dbReader = cmd.ExecuteReader()) {
+                if (dbReader.HasRows) {
+                    while (dbReader.Read()) {
+                        string title = dbReader.GetString(0);
+                        double price = Convert.ToDouble(dbReader.GetValue(1));
+                        int quantity = Convert.ToInt32(dbReader.GetValue(2));
+                        string[] confines = dbReader.GetString(3).Split('-');
+                        Interval limit = new Interval(Int32.Parse(confines[0]), Int32.Parse(confines[1]));
+                        int id = Convert.ToInt32(dbReader.GetValue(4));
+
+                        dbBooks.Add(new Book(id, title, price, quantity, limit));
+                    }
+                }
+            }
+
+            return dbBooks;
         }
         #endregion
     }

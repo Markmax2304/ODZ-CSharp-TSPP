@@ -1,28 +1,30 @@
 ﻿using System;
 using System.Text;
-using ODZ_TSPP.Models;
 
 namespace ODZ_TSPP
 {
-    public class Book : IDatable
+    public class Book
     {
+        public int Id { get; private set; }
         public string Title { get; set; }
         public double Price { get; set; }
         public int Quantity { get; set; }
         public Interval Limit { get; set; }
 
-        public Book(string title, double price, int quantity, Interval limit)
+        public Book(int id, string title, double price, int quantity, Interval limit)
         {
+            Id = id;
             Title = title;
             Price = price;
             Quantity = quantity;
             Limit = limit;
         }
 
-        public string ToString()
+        public override string ToString()
         {
             StringBuilder value = new StringBuilder();
-            value.AppendFormat("Title = {0} | Price = {1} | Quantity = {2} | Age limit: from {3} till {4}.", Title, Price, Quantity, Limit.from, Limit.till);
+            value.AppendFormat($"Id = {Id} | Title = {Title} | Price = {Price} | Quantity = {Quantity} |" +
+                $" Age limit: from {Limit.from} till {Limit.till}.");
             return value.ToString();
         }
 
@@ -31,7 +33,7 @@ namespace ODZ_TSPP
             throw new NotImplementedException();
         }
 
-        public IDatable ToObject()
+        public Book ToObject()
         {
             throw new NotImplementedException();
         }

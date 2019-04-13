@@ -66,11 +66,8 @@
     <Compile Include="Commands\ShowCommand.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DB\DBUtils.cs" />
-    <Compile Include="DB\IDataAccess.cs" />
-    <Compile Include="DB\MySqlDataBase.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Commands\ICommandButton.cs" />
-    <Compile Include="Models\IDatable.cs" />
     <Compile Include="ViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

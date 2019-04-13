@@ -20,9 +20,8 @@
         <TextBox x:Name="limitTillText" HorizontalAlignment="Left" Height="26" Margin="185,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30"/>
         <Label Content="till" HorizontalAlignment="Left" Margin="159,122,0,0" VerticalAlignment="Top"/>
         <Button x:Name="Remove" Content="Remove" HorizontalAlignment="Left" Margin="330,28,0,0" VerticalAlignment="Top" Width="90" Height="25" Click="Remove_Click"/>
-        <Button x:Name="Edit" Content="Edit" HorizontalAlignment="Left" Margin="430,28,0,0" VerticalAlignment="Top" Width="90" Height="25" Click="Edit_Click"/>
-        <Button x:Name="Show" Content="Show" HorizontalAlignment="Left" Margin="530,28,0,0" VerticalAlignment="Top" Width="90" Height="25" Click="Show_Click"/>
-        <Button x:Name="Clear" Content="Clear" HorizontalAlignment="Left" Margin="530,123,0,0" VerticalAlignment="Top" Width="90" Height="25" Click="Clear_Click"/>
+        <Button x:Name="Show" Content="Show" HorizontalAlignment="Left" Margin="430,28,0,0" VerticalAlignment="Top" Width="90" Height="25" Click="Show_Click"/>
+        <Button x:Name="Clear" Content="Clear" HorizontalAlignment="Left" Margin="530,28,0,0" VerticalAlignment="Top" Width="90" Height="25" Click="Clear_Click"/>
 
     </Grid>
 </Window>

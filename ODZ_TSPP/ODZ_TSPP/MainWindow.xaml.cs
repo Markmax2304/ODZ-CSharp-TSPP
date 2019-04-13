@@ -97,12 +97,6 @@ namespace ODZ_TSPP
             command.Execute();
         }
 
-        private void Edit_Click(object sender, RoutedEventArgs e)
-        {
-            ICommandButton command = viewModel.GetCommandByName(Constants.EDIT_COMMAND);
-            command.Execute();
-        }
-
         private void Show_Click(object sender, RoutedEventArgs e)
         {
             ICommandButton command = viewModel.GetCommandByName(Constants.SHOW_COMMAND);

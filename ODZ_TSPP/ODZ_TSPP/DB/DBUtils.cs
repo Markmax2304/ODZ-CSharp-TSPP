@@ -9,9 +9,9 @@ namespace ODZ_TSPP.DB
 {
     public class DBUtils
     {
-        public static MySqlConnection GetDBConnection(string host, int port, string database, string username, string password)
+        public static MySqlConnection GetDBConnection(string host, string username, string database, string password)
         {
-            String connString = $"Server={host};Database={database};port={port};User Id={username};password={password}";
+            String connString = $"server={host};user={username};database={database};password={password}";
 
             MySqlConnection conn = new MySqlConnection(connString);
 
