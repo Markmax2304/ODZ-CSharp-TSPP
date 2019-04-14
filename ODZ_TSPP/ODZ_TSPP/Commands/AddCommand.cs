@@ -26,7 +26,14 @@ namespace ODZ_TSPP.Commands
 
             Book book = new Book(title, price, quantity, confines);
 
-            _context.AddBook(book);
+            if (_view.IsUpdate) {
+                _context.UpdateBook(book);
+                _view.SetOutputField($"Book \"{title}\" is updated");
+            }
+            else { 
+                _context.AddBook(book);
+                _view.SetOutputField($"Book \"{title}\" is added");
+            }
         }
     }
 }

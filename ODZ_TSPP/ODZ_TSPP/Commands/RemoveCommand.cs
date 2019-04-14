@@ -22,6 +22,7 @@ namespace ODZ_TSPP.Commands
             string title = _view.GetTitleField();
 
             _context.DeleteBook(title);
+            _view.SetOutputField($"Book \"{title}\" is removed");
         }
     }
 }

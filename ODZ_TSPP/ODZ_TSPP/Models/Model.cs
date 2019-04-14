@@ -62,6 +62,19 @@ namespace ODZ_TSPP
             cmd.ExecuteNonQuery();
         }
 
+        public void UpdateBook(Book book)
+        {
+            if (GetBookByTitle(book.Title) == null) {
+                throw new Exception($"Such book {book.Title} is not existed in DataBase.");
+            }
+
+            string insertQuery = String.Format("UPDATE books SET price = '{0}', count = '{1}', confines = '{2}-{3}' WHERE name = '{4}'",
+                book.Price, book.Quantity, book.Limit.from, book.Limit.till, book.Title);
+
+            MySqlCommand cmd = new MySqlCommand(insertQuery, dbConnection);
+            cmd.ExecuteNonQuery();
+        }
+
         public void DeleteBook(string title)
         {
             if (GetBookByTitle(title) == null)

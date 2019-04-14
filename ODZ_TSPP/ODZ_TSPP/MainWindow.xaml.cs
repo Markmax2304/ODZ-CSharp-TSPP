@@ -23,6 +23,8 @@ namespace ODZ_TSPP
     {
         private ViewModel viewModel;
 
+        public bool IsUpdate { get; private set; }
+
         public View()
         {
             InitializeComponent();
@@ -37,6 +39,11 @@ namespace ODZ_TSPP
             outputText.Items.Add(value);
         }
 
+        public ItemCollection GetOutputField()
+        {
+            return outputText.Items;
+        }
+
         public void ClearOutputField()
         {
             outputText.Items.Clear();
@@ -46,7 +53,7 @@ namespace ODZ_TSPP
         {
             string name = nameText.Text;
             if (String.IsNullOrEmpty(name)) {
-                throw new Exception("Name field wrong. Change this and try again.");
+                throw new Exception("Name field is empty. Change this and try again.");
             }
             return name;
         }
@@ -55,18 +62,30 @@ namespace ODZ_TSPP
         {
             string price = priceText.Text;
             if (String.IsNullOrEmpty(price)) {
-                throw new Exception("Price field wrong. Change this and try again.");
+                throw new Exception("Price field is empty. Change this and try again.");
             }
-            return Double.Parse(price);
+
+            double value = Double.Parse(price);
+            if(value <= 0) {
+                throw new Exception("Price field have invalid value. Change this and try again.");
+            }
+
+            return value;
         }
 
         public int GetQuantityField()
         {
             string quantity = quantityText.Text;
             if (String.IsNullOrEmpty(quantity)) {
-                throw new Exception("Quantity field wrong. Change this and try again.");
+                throw new Exception("Quantity field is empty. Change this and try again.");
             }
-            return Int32.Parse(quantity);
+
+            int value = Int32.Parse(quantity);
+            if (value <= 0) {
+                throw new Exception("Quantity field have invalid value. Change this and try again.");
+            }
+
+            return value;
         }
 
         public Interval GetLimitFields()
@@ -112,6 +131,26 @@ namespace ODZ_TSPP
         {
             InvokeCommandByName(Constants.FIND_COMMAND);
         }
+
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(Constants.ABOUT_INFO, "About authors", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void NameText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string title = GetTitleField();
+            Book book = viewModel.Context.GetBookByTitle(title);
+
+            if(book != null) {
+                Add.Content = "Update";
+                IsUpdate = true;
+            }
+            else {
+                Add.Content = "Add";
+                IsUpdate = false;
+            }
+        }
         #endregion
 
         #region Private Methods
@@ -126,10 +165,5 @@ namespace ODZ_TSPP
             }
         }
         #endregion
-
-        private void About_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show(Constants.ABOUT_INFO, "About authors", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
     }
 }
