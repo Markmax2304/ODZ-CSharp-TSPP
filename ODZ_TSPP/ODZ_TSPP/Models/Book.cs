@@ -25,16 +25,6 @@ namespace ODZ_TSPP
                 $" Age limit: from {Limit.from} till {Limit.till}.");
             return value.ToString();
         }
-
-        public string ToData()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Book ToObject()
-        {
-            throw new NotImplementedException();
-        }
     }
 
     [Serializable]
