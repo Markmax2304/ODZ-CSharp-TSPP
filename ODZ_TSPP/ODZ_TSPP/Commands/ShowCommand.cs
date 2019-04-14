@@ -19,7 +19,7 @@ namespace ODZ_TSPP.Commands
         {
             List<Book> books = _context.GetAllBooks();
             foreach(Book book in books) {
-                _view.SetOutputField(book.ToString());
+                _view.SetOutputField(book.ToPrint());
             }
         }
     }

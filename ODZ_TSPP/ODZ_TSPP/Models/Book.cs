@@ -18,7 +18,7 @@ namespace ODZ_TSPP
             Limit = limit;
         }
 
-        public override string ToString()
+        public string ToPrint()
         {
             StringBuilder value = new StringBuilder();
             value.AppendFormat($"Title = {Title} | Price = {Price} | Quantity = {Quantity} |" +

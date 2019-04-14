@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ODZ_TSPP"
         mc:Ignorable="d"
-        Title="ODZ" Height="480" Width="640">
+        Title="ODZ" Height="480" Width="640" MinWidth="640" MinHeight="480">
     <Grid>
         <TextBox x:Name="priceText" HorizontalAlignment="Left" Height="26" Margin="95,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="30,28,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
-        <Button x:Name="Add" Content="Add" HorizontalAlignment="Right" Margin="0,28,312,0" VerticalAlignment="Top" Width="90" Height="25" Click="Add_Click"/>
-        <ListBox x:Name="outputText" Margin="10,160,12,10"/>
+        <Button x:Name="Add" Content="Add" ToolTip="Insert new book at DB (all book's fields must be filled)" HorizontalAlignment="Right" Margin="0,28,312,0" VerticalAlignment="Top" Width="90" Height="25" Click="Add_Click"/>
+        <ListBox x:Name="outputText" Margin="10,184,12,10"/>
         <TextBox x:Name="nameText" HorizontalAlignment="Left" Height="26" Margin="95,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Price" HorizontalAlignment="Left" Margin="30,59,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,-0.154"/>
         <TextBox x:Name="quantityText" HorizontalAlignment="Left" Height="26" Margin="95,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
@@ -19,13 +19,14 @@
         <TextBox x:Name="limitFromText" HorizontalAlignment="Left" Height="26" Margin="124,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30"/>
         <TextBox x:Name="limitTillText" HorizontalAlignment="Left" Height="26" Margin="185,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30"/>
         <Label Content="till" HorizontalAlignment="Left" Margin="159,122,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="Remove" Content="Remove" Margin="0,28,212,0" VerticalAlignment="Top" Height="25" Click="Remove_Click" HorizontalAlignment="Right" Width="90"/>
-        <Button x:Name="Show" Content="Show" Margin="0,28,112,0" VerticalAlignment="Top" Height="25" Click="Show_Click" HorizontalAlignment="Right" Width="90"/>
-        <Button x:Name="Clear" Content="Clear" Margin="0,28,12,0" VerticalAlignment="Top" Height="25" Click="Clear_Click" HorizontalAlignment="Right" Width="90"/>
-        <Label Content="Special functions:" Margin="0,92,200,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="102"/>
-        <Button x:Name="Clear_Copy" Content="Clear" Margin="0,123,12,0" VerticalAlignment="Top" Height="25" Click="Clear_Click" HorizontalAlignment="Right" Width="90"/>
-        <Button x:Name="Clear_Copy1" Content="Clear" Margin="0,123,112,0" VerticalAlignment="Top" Height="25" Click="Clear_Click" HorizontalAlignment="Right" Width="90"/>
-        <Button x:Name="Clear_Copy2" Content="Clear" Margin="0,123,212,0" VerticalAlignment="Top" Height="25" Click="Clear_Click" HorizontalAlignment="Right" Width="90"/>
+        <Button x:Name="Remove" Content="Remove" ToolTip="Delete book from DB by only its name (name field must be filled)" Margin="0,28,212,0" VerticalAlignment="Top" Height="25" Click="Remove_Click" HorizontalAlignment="Right" Width="90"/>
+        <Button x:Name="Show" Content="Show" ToolTip="Show all books of DB to Output window" Margin="0,28,112,0" VerticalAlignment="Top" Height="25" Click="Show_Click" HorizontalAlignment="Right" Width="90"/>
+        <Button x:Name="Clear" Content="Clear" ToolTip="Clean up all records at Output window" Margin="0,28,12,0" VerticalAlignment="Top" Height="25" Click="Clear_Click" HorizontalAlignment="Right" Width="90"/>
+        <Label Content="Special functions:" Margin="0,123,207,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="102"/>
+        <Button x:Name="Print" Content="Print to Word" ToolTip="Print output window context to Word file" Margin="0,123,12,0" VerticalAlignment="Top" Height="25" HorizontalAlignment="Right" Width="90" Click="Print_Click"/>
+        <Button x:Name="Find" Content="Find by Age" ToolTip="Find all books of age confines(age limits field must be filled) and define the cheapest book of them" Margin="0,123,112,0" VerticalAlignment="Top" Height="25" HorizontalAlignment="Right" Width="90" Click="Find_Click"/>
+        <Label Content="Output window:" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.018,-0.141"/>
+        <Button x:Name="About" Content="i" HorizontalAlignment="Left" VerticalAlignment="Top" Width="22" Margin="5,5,0,0" Height="22" Click="About_Click"/>
 
     </Grid>
 </Window>

@@ -61,6 +61,8 @@
     </ApplicationDefinition>
     <Compile Include="Commands\AddCommand.cs" />
     <Compile Include="Commands\ClearCommand.cs" />
+    <Compile Include="Commands\FindByConfines.cs" />
+    <Compile Include="Commands\PrintToWord.cs" />
     <Compile Include="Commands\RemoveCommand.cs" />
     <Compile Include="Commands\ShowCommand.cs" />
     <Compile Include="Constants.cs" />

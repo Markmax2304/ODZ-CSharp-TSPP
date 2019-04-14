@@ -29,8 +29,6 @@ namespace ODZ_TSPP
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
             viewModel = new ViewModel(this);
-
-            
         }
 
         #region Public Methods
@@ -87,27 +85,51 @@ namespace ODZ_TSPP
         #region Event Handlers
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            ICommandButton command = viewModel.GetCommandByName(Constants.ADD_COMMAND);
-            command.Execute();
+            InvokeCommandByName(Constants.ADD_COMMAND);
         }
 
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
-            ICommandButton command = viewModel.GetCommandByName(Constants.REMOVE_COMMAND);
-            command.Execute();
+            InvokeCommandByName(Constants.REMOVE_COMMAND);
         }
 
         private void Show_Click(object sender, RoutedEventArgs e)
         {
-            ICommandButton command = viewModel.GetCommandByName(Constants.SHOW_COMMAND);
-            command.Execute();
+            InvokeCommandByName(Constants.SHOW_COMMAND);
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
-            ICommandButton command = viewModel.GetCommandByName(Constants.CLEAR_COMMAND);
-            command.Execute();
+            InvokeCommandByName(Constants.CLEAR_COMMAND);
+        }
+
+        private void Print_Click(object sender, RoutedEventArgs e)
+        {
+            InvokeCommandByName(Constants.PRINT_COMMAND);
+        }
+
+        private void Find_Click(object sender, RoutedEventArgs e)
+        {
+            InvokeCommandByName(Constants.FIND_COMMAND);
         }
         #endregion
+
+        #region Private Methods
+        private void InvokeCommandByName(string value)
+        {
+            try {
+                ICommandButton command = viewModel.GetCommandByName(value);
+                command.Execute();
+            }
+            catch(Exception ex) {
+                MessageBox.Show(ex.Message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(Constants.ABOUT_INFO, "About authors", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }
