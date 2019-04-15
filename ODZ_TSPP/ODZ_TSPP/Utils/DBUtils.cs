@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace ODZ_TSPP.DB
+namespace ODZ_TSPP.Utils
 {
     public class DBUtils
     {

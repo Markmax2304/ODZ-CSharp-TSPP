@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using MySql.Data.MySqlClient;
-using ODZ_TSPP.DB;
+using ODZ_TSPP.Utils;
 
 namespace ODZ_TSPP
 {

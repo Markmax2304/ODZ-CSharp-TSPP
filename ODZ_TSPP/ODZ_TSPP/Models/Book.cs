@@ -38,5 +38,10 @@ namespace ODZ_TSPP
             from = _from;
             till = _till;
         }
+
+        public override string ToString()
+        {
+            return $"{from}-{till}";
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace ODZ_TSPP
             commands.Add(Constants.CLEAR_COMMAND, new ClearCommand(Context, _view));
 
             commands.Add(Constants.FIND_COMMAND, new FindByConfines(Context, _view));
-            commands.Add(Constants.PRINT_COMMAND, new PrintToWord(Context, _view));
+            commands.Add(Constants.CHEAPEST_COMMAND, new FindCheapestCommand(Context, _view));
         }
 
         public ICommandButton GetCommandByName(string value)

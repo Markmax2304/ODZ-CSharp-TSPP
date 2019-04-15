@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ODZ_TSPP.Utils;
 
 namespace ODZ_TSPP.Commands
 {
@@ -21,21 +22,17 @@ namespace ODZ_TSPP.Commands
         {
             Interval confines = _view.GetLimitFields();
             List<Book> books = _context.GetAllBooks();
+            List<string> outputs = new List<string>();
 
-            Book cheapestBook = null;
             foreach(Book book in books) {
                 if(book.Limit.from >= confines.from && book.Limit.till <= confines.till) {
-                    _view.SetOutputField(book.Title);
-
-                    if(cheapestBook == null || cheapestBook.Price > book.Price) {
-                        cheapestBook = book;
-                    }
+                    string value = $"\"{book.Title}\" : {book.Limit.ToString()}";
+                    _view.SetOutputField(value);
+                    outputs.Add(value);
                 }
             }
 
-            if(cheapestBook != null) {
-                _view.SetOutputField($"The cheapest book is \"{cheapestBook.Title}\" and its price = {cheapestBook.Price}");
-            }
+            WordUtils.PrintToWord(outputs);
         }
     }
 }

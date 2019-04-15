@@ -122,14 +122,14 @@ namespace ODZ_TSPP
             InvokeCommandByName(Constants.CLEAR_COMMAND);
         }
 
-        private void Print_Click(object sender, RoutedEventArgs e)
-        {
-            InvokeCommandByName(Constants.PRINT_COMMAND);
-        }
-
         private void Find_Click(object sender, RoutedEventArgs e)
         {
             InvokeCommandByName(Constants.FIND_COMMAND);
+        }
+
+        private void FindCheapest_Click(object sender, RoutedEventArgs e)
+        {
+            InvokeCommandByName(Constants.CHEAPEST_COMMAND);
         }
 
         private void About_Click(object sender, RoutedEventArgs e)
@@ -139,16 +139,21 @@ namespace ODZ_TSPP
 
         private void NameText_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string title = GetTitleField();
-            Book book = viewModel.Context.GetBookByTitle(title);
+            try {
+                string title = GetTitleField();
+                Book book = viewModel.Context.GetBookByTitle(title);
 
-            if(book != null) {
-                Add.Content = "Update";
-                IsUpdate = true;
+                if (book != null) {
+                    Add.Content = "Update";
+                    IsUpdate = true;
+                }
+                else {
+                    Add.Content = "Add";
+                    IsUpdate = false;
+                }
             }
-            else {
-                Add.Content = "Add";
-                IsUpdate = false;
+            catch(Exception ex) {
+
             }
         }
         #endregion

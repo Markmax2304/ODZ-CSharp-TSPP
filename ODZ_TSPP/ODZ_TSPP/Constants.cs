@@ -16,6 +16,6 @@ namespace ODZ_TSPP
         public const string CLEAR_COMMAND = "Clear";
 
         public const string FIND_COMMAND = "Find";
-        public const string PRINT_COMMAND = "Print";
+        public const string CHEAPEST_COMMAND = "Cheapest";
     }
 }

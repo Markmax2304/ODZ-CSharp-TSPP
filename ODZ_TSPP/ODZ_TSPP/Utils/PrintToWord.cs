@@ -8,29 +8,25 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Word = Microsoft.Office.Interop.Word;
 
-namespace ODZ_TSPP.Commands
+namespace ODZ_TSPP.Utils
 {
-    class PrintToWord : ICommandButton
+    public class WordUtils
     {
-        private Model _context;
-        private View _view;
+        private static object missing = Type.Missing;
 
-        private object missing = Type.Missing;
-
-        public PrintToWord(Model context, View view)
+        #region Public Methods
+        public static void PrintToWord(string output)
         {
-            _context = context;
-            _view = view;
+            PrintToWord(new List<string> { output });
         }
 
-        public void Execute()
+        public static void PrintToWord(IList outputs)
         {
             string path = $"{InvokeFolderBrowser()}\\result.doc";
 
             Word._Application word_app = new Word.Application();
             Word._Document word_doc = word_app.Documents.Add(ref missing, ref missing, ref missing, ref missing);
 
-            IList outputs = _view.GetOutputField();
             foreach(var row in outputs) 
             {
                 Word.Paragraph para = word_doc.Paragraphs.Add(ref missing);
@@ -48,12 +44,11 @@ namespace ODZ_TSPP.Commands
             object save_changes = false;
             word_doc.Close(ref save_changes, ref missing, ref missing);
             word_app.Quit(ref save_changes, ref missing, ref missing);
-
-            _view.SetOutputField($"Output window is print to word succesfully");
         }
+        #endregion
 
         #region Private Method
-        private string InvokeFolderBrowser()
+        private static string InvokeFolderBrowser()
         {
             FolderBrowserDialog browser = new FolderBrowserDialog();
             browser.ShowDialog();
