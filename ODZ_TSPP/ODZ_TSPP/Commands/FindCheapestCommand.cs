@@ -32,7 +32,8 @@ namespace ODZ_TSPP.Commands
             if (cheapestBook != null) {
                 string value = $"The cheapest book is \"{cheapestBook.Title}\" and its price = {cheapestBook.Price}";
                 _view.SetOutputField(value);
-                WordUtils.PrintToWord(value);
+                string filename = _view.GetFileNameField();
+                WordUtils.PrintToWord(value, filename);
             }
         }
     }

@@ -32,7 +32,8 @@ namespace ODZ_TSPP.Commands
                 }
             }
 
-            WordUtils.PrintToWord(outputs);
+            string filename = _view.GetFileNameField();
+            WordUtils.PrintToWord(outputs, filename);
         }
     }
 }

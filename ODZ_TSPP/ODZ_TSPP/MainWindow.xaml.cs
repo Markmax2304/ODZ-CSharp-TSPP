@@ -49,6 +49,15 @@ namespace ODZ_TSPP
             outputText.Items.Clear();
         }
 
+        public string GetFileNameField()
+        {
+            string fileName = path.Text;
+            if (String.IsNullOrEmpty(fileName)) {
+                return "";
+            }
+            return fileName;
+        }
+
         public string GetTitleField()
         {
             string name = nameText.Text;

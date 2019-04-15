@@ -15,14 +15,17 @@ namespace ODZ_TSPP.Utils
         private static object missing = Type.Missing;
 
         #region Public Methods
-        public static void PrintToWord(string output)
+        public static void PrintToWord(string output, string filename = "")
         {
-            PrintToWord(new List<string> { output });
+            PrintToWord(new List<string> { output }, filename);
         }
 
-        public static void PrintToWord(IList outputs)
+        public static void PrintToWord(IList outputs, string filename = "")
         {
-            string path = $"{InvokeFolderBrowser()}\\result.doc";
+            if (String.IsNullOrEmpty(filename)) {
+                filename = "result";
+            }
+            string path = $"{InvokeFolderBrowser()}\\{filename}.doc";
 
             Word._Application word_app = new Word.Application();
             Word._Document word_doc = word_app.Documents.Add(ref missing, ref missing, ref missing, ref missing);

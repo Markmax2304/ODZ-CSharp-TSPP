@@ -22,11 +22,13 @@
         <Button x:Name="Remove" Content="Remove" ToolTip="Delete book from DB by only its name (name field must be filled)" Margin="0,28,212,0" VerticalAlignment="Top" Height="25" Click="Remove_Click" HorizontalAlignment="Right" Width="90"/>
         <Button x:Name="Show" Content="Show" ToolTip="Show all books of DB to Output window" Margin="0,28,112,0" VerticalAlignment="Top" Height="25" Click="Show_Click" HorizontalAlignment="Right" Width="90"/>
         <Button x:Name="Clear" Content="Clear" ToolTip="Clean up all records at Output window" Margin="0,28,12,0" VerticalAlignment="Top" Height="25" Click="Clear_Click" HorizontalAlignment="Right" Width="90"/>
-        <Label Content="Special functions:" Margin="0,153,207,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="102"/>
+        <Label Content="Special functions for print to MS Word:" Margin="0,122,112,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="222"/>
         <Button x:Name="Find" Content="Find by Age" ToolTip="Find all books of age confines(age limits field must be filled) and print to word file them" Margin="0,154,12,0" VerticalAlignment="Top" Height="25" HorizontalAlignment="Right" Width="90" Click="Find_Click"/>
         <Label Content="Output window:" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.018,-0.141"/>
         <Button x:Name="About" Content="i" HorizontalAlignment="Left" VerticalAlignment="Top" Width="22" Margin="5,5,0,0" Height="22" Click="About_Click"/>
         <Button x:Name="FindCheapest" Content="Find Cheapest" ToolTip="Find the cheapest book among all books and print to word file it" HorizontalAlignment="Left" Margin="430,154,0,0" VerticalAlignment="Top" Width="90" Height="25" Click="FindCheapest_Click"/>
+        <TextBox x:Name="path" HorizontalAlignment="Left" Height="23" Margin="298,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Filename:" Margin="0,153,339,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="63"/>
 
     </Grid>
 </Window>

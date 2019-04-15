@@ -18,8 +18,13 @@ namespace ODZ_TSPP
 
         public Model()
         {
-            ConnectToMySqlDB();
-            dbConnection.Open();
+            try {
+                ConnectToMySqlDB();
+                dbConnection.Open();
+            }
+            catch(Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         ~Model()
